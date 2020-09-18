@@ -1,0 +1,14 @@
+---
+publishDate: '2017-06-05'
+summary: >
+  Prepack is a new build tool from Facebook. It optimizes your application’s
+  runtime performance by eliminating computations known at compile time. What
+  effect does it have on a real-world app?
+category: development
+tags:
+  - javascript
+  - webpack
+  - prepack
+  - performance
+relatedPosts:
+  - upgrading-to-webpack-2
