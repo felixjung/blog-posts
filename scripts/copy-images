@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# shopt -s globstar
+
+working_directory="$(pwd)"
+
+image_folder="$working_directory/$(dirname "${BASH_SOURCE[0]}")/../images"
+
+mkdir -p "$image_folder"
+
+for i in "$working_directory"/posts/**/images/*; do
+  cp "$i" "$image_folder"
+done
