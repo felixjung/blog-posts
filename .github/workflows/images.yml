@@ -6,6 +6,7 @@ on:
       - 'posts/**/images/*'
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   sync-images:
