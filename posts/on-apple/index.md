@@ -101,7 +101,7 @@ an [AVM FRITZ!Box](https://en.avm.de/products/fritzbox/), a product so German
 and boring I never even considered buying it. Yes, there is Ubiquity, but their
 offerings are more for the professional market.
 
-![Linksys routers on Amazon](#)(//images.contentful.com/ibq1vhkmncem/79wHm3P30cqe4Iog6UAyY2/49270e3ce8b3a1a527a54f4206dd0d3c/routers.jpg)
+![Linksys routers on Amazon](images/routers.jpg)
 
 So yes, Apple should continue making their routers, in particular if they want
 to maybe finally establish HomeKit as a real thing.

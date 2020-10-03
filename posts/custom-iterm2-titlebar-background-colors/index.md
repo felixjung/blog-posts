@@ -33,13 +33,13 @@ with a nicely looking setup (getting theme colors to work has become a lot
 easier thanks to [True Color](https://gist.github.com/XVilka/8346728) support
 across the stack). You be the judge.
 
-![Neovim on the left, terminal on the right, all running inside a tmux session in iTerm2.](DraggedImage.jpg)
+![Neovim on the left, terminal on the right, all running inside a tmux session in iTerm2.](images/neovim-and-prompt.jpg)
 
 However, one thing that always bothered me was iTerm’s grey titlebar. In the
 nightly builds, George Nachman has added support for macOS’ dark mode for the
 titlebar. This is nice, but still does not look as beautiful as Hyper.
 
-![iTerm2 with dark titlebar left, Hyper on the right.](DraggedImage-1.jpg)
+![iTerm2 with dark titlebar left, Hyper on the right.](images/neovim-and-prompt.jpg)
 
 Recently, I finally — by accident — found a solution to this problem. 🎉 Turns
 out, iTerm2 supports some
@@ -59,7 +59,7 @@ $ echo -e "\033]6;1;bg;blue;brightness;52\a"
 
 This is what it looks like.
 
-![iTerm2 with custom titlebar background.](DraggedImage-2.jpg)
+![iTerm2 with custom titlebar background.](images/iterm-custom-titlebar.jpg)
 
 Finally. iTerm will not save this to your settings. The solution is to
 automatically execute the above commands when launching a new session. Just add
