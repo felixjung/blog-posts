@@ -1,12 +1,11 @@
 ---
 publishDate: '2017-01-22'
 summary: >
-  Much has been said and written about the current state of Apple over the past
-  weeks, months, and even years. Things are not perfect, but there are not
-  enough reasons to switch.
+  Developers have great ideas for interesting side projects. All to often these
+  ideas turn into unfinished zombie repositories on Github. Here is how to stop
+  that from happening.
 category: development
 tags:
-  - personal development
-  - project management
-  - side projects
-  - code
+  - Personal Development
+  - Side Projects
+  - Code

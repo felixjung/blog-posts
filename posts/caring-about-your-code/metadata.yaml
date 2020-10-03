@@ -1,12 +1,11 @@
 ---
-publishDate: '2018-01-27'
+publishDate: '2017-01-15'
 summary: >
-  Writing presentational React components often requires more code than it
-  should. Styled components with Emotion let you focus on the presentation
-  alone, leveraging dynamic styles and composition.
-category: development
+  When you are a developer and hacking together some scripts for yourself, there
+  is no immediate need to care about the quality of your code or its style.
+  Think again.
+category: Development
 tags:
-  - react
-  - emotion
-  - styles
-  - css-in-js
+  - Code
+  - Git
+  - Learning to Code

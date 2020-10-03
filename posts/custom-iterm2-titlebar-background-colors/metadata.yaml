@@ -3,10 +3,10 @@ publishDate: '2017-06-14'
 summary: >
   Make your iTerm2 setup look as beautiful as Hyper. iTerm2 supports proprietary
   escape codes to achieve just that. Read the story to find out how they work..
-category: development
+category: Development
 tags:
-  - terminal
-  - iterm2
-  - themes
-  - devtools
+  - Terminal
+  - iTerm2
+  - Themes
+  - DevTools
   - macOS

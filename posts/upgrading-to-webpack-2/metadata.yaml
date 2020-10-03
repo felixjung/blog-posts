@@ -4,10 +4,10 @@ summary: >
   A recount of what I learned upgrading our Angular 1.6 app at work from webpack
   1 to webpack 2. Including commons chunks, lodash and D3 optimizations, and
   tree-shaking.
-category: development
+category: Development
 tags:
-  - webpack
-  - frontend
-  - build tools
-  - web
-  - javascript
+  - Webpack
+  - Frontend
+  - Build Tools
+  - Web
+  - JavaScript

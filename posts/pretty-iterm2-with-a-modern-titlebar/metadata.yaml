@@ -1,11 +1,15 @@
 ---
-publishDate: '2019-01-24'
+publishDate: '2018-09-30'
 summary: >
-  The css prop has received some new super powers in Emotion 10. It does not
-  need the Emotion Babel plugin and has direct theme access.
-category: development
+  New features in iTerm2 under Mojave allow configuring a beautiful titlebar
+  with integrated tabs, matching theme colors, and more. It is the prettiest it
+  has ever been.
+category: Development
 tags:
-  - react
-  - emotion
-  - styles
-  - css
+  - iTerm2
+  - Mojave
+  - macOS
+  - Themes
+  - UI
+  - Terminal
+  - DevTools

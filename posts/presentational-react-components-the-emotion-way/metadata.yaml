@@ -1,9 +1,12 @@
 ---
-publishDate: '2017-01-17'
+publishDate: '2018-01-27'
 summary: >
-  Much has been said and written about the current state of Apple over the past
-  weeks, months, and even years. Things are not perfect, but there are not
-  enough reasons to switch.
-category: tech
+  Writing presentational React components often requires more code than it
+  should. Styled components with Emotion let you focus on the presentation
+  alone, leveraging dynamic styles and composition.
+category: Development
 tags:
-  - apple
+  - React
+  - Emotion
+  - styles
+  - CSS-in-JS

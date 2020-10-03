@@ -1,9 +1,12 @@
 ---
-publishDate: '2017-01-17'
+publishDate: '2019-01-24'
 summary: >
   Much has been said and written about the current state of Apple over the past
   weeks, months, and even years. Things are not perfect, but there are not
   enough reasons to switch.
-category: tech
+category: Development
 tags:
-  - apple
+  - React
+  - Emotion
+  - Styles
+  - CSS
