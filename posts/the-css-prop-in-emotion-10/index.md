@@ -1,4 +1,4 @@
-# The `css` Prop in Emotion 10
+# The css Prop in Emotion 10
 
 On November 27th, [Mitchell Hamilton](https://twitter.com/mitchellhamiltn) announced the release of Emotion 10 [in a blog post](https://medium.com/emotion-js/announcing-emotion-10-f1a4b17b8ccd). The new version comes with a lot of changes, a new API, and new packages. I encourage you to read the post and check out [the documentation](https://emotion.sh/docs/@emotion/core).
 
