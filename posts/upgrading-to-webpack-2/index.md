@@ -19,7 +19,7 @@ like entries, loaders, plugins, and chunks. If not, I highly recommend
 can also find a great getting started guide in the
 [guides section](https://webpack.js.org/guides/get-started/) of the
 [new webpack website](https://webpack.js.org). While I was working on this post,
-[Adam Rackis](#) wrote a
+[Adam Rackis](https://twitter.com/AdamRackis) wrote a
 [great post](https://medium.com/@adamrackis/vendor-and-code-splitting-in-webpack-2-6376358f1923#.pyuadzo48)
 on code splitting with webpack 2. It helped me improve our build even further.
 
@@ -93,8 +93,8 @@ module: {
   loaders: [
     {
       test: /\.css$/,
-      loader: 'style-loader!css-loader?modules',
-    },
+      loader: 'style-loader!css-loader?modules'
+    }
   ];
 }
 
@@ -105,16 +105,16 @@ module: {
       test: /\.css$/,
       use: [
         {
-          loader: 'style-loader',
+          loader: 'style-loader'
         },
         {
           loader: 'css-loader',
           options: {
-            modules: true,
-          },
-        },
-      ],
-    },
+            modules: true
+          }
+        }
+      ]
+    }
   ];
 }
 ```
@@ -351,18 +351,18 @@ Sweet 🍭.
 Now to the — hopefully — final step before flipping the switch enabling
 tree-shaking. Finding a way to import only the bits of lodash we needed. Lodash
 is available in many different builds. There is regular
-[lodash](#)(https://www.npmjs.com/package/lodash) (what we use),
-[lodash-es](#)(https://www.npmjs.com/package/lodash-es) (an ES2015 exports based
+[lodash](https://www.npmjs.com/package/lodash) (what we use),
+[lodash-es](https://www.npmjs.com/package/lodash-es) (an ES2015 exports based
 version),
-[lodash-modularized](#)(https://www.npmjs.com/browse/keyword/lodash-modularized)
+[lodash-modularized](https://www.npmjs.com/browse/keyword/lodash-modularized)
 (individual lodash functions as modules). You can also directly import
 individual lodash functions (e.g., import map from 'lodash/map';). So, there are
 ways to facilitate named member imports from lodash, enabling tree-shaking along
 the way. However, I did not want to go through our entire codebase and rewrite
 all those lodash imports. Luckily, there is a very handy
-[lodash Babel plugin](#)(https://github.com/lodash/babel-plugin-lodash) that
-turns any imports of lodash and subsequent use of lodash methods into named
-member imports. Here is the example from the plugin’s readme:
+[lodash Babel plugin](https://github.com/lodash/babel-plugin-lodash) that turns
+any imports of lodash and subsequent use of lodash methods into named member
+imports. Here is the example from the plugin’s readme:
 
 ```js
 // Turns
@@ -392,9 +392,9 @@ use: [
       plugins: ['lodash', 'syntax-dynamic-import'],
       presets: ['latest'],
       cacheDirectory: true,
-      babelrc: false,
-    },
-  },
+      babelrc: false
+    }
+  }
 ];
 ```
 
@@ -435,9 +435,9 @@ use: [
       plugins: ['lodash', 'syntax-dynamic-import'],
       presets: [['latest', { modules: false }]],
       cacheDirectory: true,
-      babelrc: false,
-    },
-  },
+      babelrc: false
+    }
+  }
 ];
 ```
 
