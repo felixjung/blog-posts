@@ -81,7 +81,7 @@ Double the embarrassment. Why don’t they just acknowledge these problems? I be
 if they were more open about this, people like me would totally understand.
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Reminder: The current Mac Pro page brags about the performance with Aperture, a program that Apple retired 2+ years ago: <a href="https://t.co/woJHb50kkE">pic.twitter.com/woJHb50kkE</a></p>&mdash; Brian Stucki (@brianstucki) <a href="https://twitter.com/brianstucki/status/791671150703091712?ref_src=twsrc%5Etfw">October 27, 2016</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
 
 Same goes for the Airport routers. These were really great routers once. Apple
 has not updated them in years and by now there are much better products
