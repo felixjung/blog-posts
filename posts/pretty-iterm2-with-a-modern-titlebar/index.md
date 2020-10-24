@@ -41,7 +41,7 @@ your liking. Here's how I have set them.
 
 ![iTerm2 final setup advanced settings.](images/iterm2-advanced-settings.jpg 'Screenshot of iTerm2 advanced settings')
 
-That's it! :tada: Enjoy an amazingly beautiful terminal experience for endless
+That's it! 🎉 Enjoy an amazingly beautiful terminal experience for endless
 developer Zen. Looking at the
 [issue on Gitlab](https://gitlab.com/gnachman/iterm2/issues/4080), this feature
 is not done yet and the experience might get even better. So stay tuned! Thanks

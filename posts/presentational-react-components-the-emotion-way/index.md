@@ -77,6 +77,7 @@ const StyledInput = styled('input')`
   ${modifierDisabled}
   ${modifierInvalid}
 `;
+
 export default StyledInput;
 ```
 
@@ -84,9 +85,9 @@ Personally, I find this very refreshing. If your component does not need logic,
 apart from "dynamic styles" (more on that later), you end up writing next to no
 code!
 
-* You don't import your styles.
-* You don't have to write a function for your component.
-* You don't need to determine the classes you want to apply to your component
+- You don't import your styles.
+- You don't have to write a function for your component.
+- You don't need to determine the classes you want to apply to your component
   with something like the classnames module.
 
 It feels very productive. But what exactly is going on here?
@@ -130,11 +131,13 @@ const colorStyles = css`
   background-color: blue;
   color: yellow;
 `;
+
 // As tagged template literal
 const MyDiv = styled('div')`
   ${fontStyles}
   ${colorStyles}
 `;
+
 // In a function call
 const MyDiv = styled('div')(fontStyles, colorStyles);
 ```
