@@ -15,6 +15,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Copy Images
         run: ./scripts/copy-images
+      - name: Process Images
+        run: cd scripts && npm i && cd .. && ./scripts/resize-images
+        env:
+          IMAGE_DIR: 'images'
       - name: Sync Images to S3
         uses: jakejarvis/s3-sync-action@master
         with:
