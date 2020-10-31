@@ -235,7 +235,7 @@ Leveraging interfaces in your Go code has several benefits. These two stand out 
 
 ## Conclusion
 
-And that is it. JavaScript does not have interfaces. However, that does not mean you should be afraid of them when picking up Go. With a little bit of practice they will become your ally in building simple and maintainable applications. You can find the [source code for the above Go example on GitHub](https://github.com/felixjung/blog-posts/posts/go-interfaces/example-code "Go user service example code on GitHub").
+And that is it. JavaScript does not have interfaces. However, that does not mean you should be afraid of them when picking up Go. With a little bit of practice they will become your ally in building simple and maintainable applications. You can find the [source code for the above Go example on GitHub](https://github.com/felixjung/blog-posts/tree/main/posts/go-interfaces/example-code "Go user service example code on GitHub").
 
 [^1]:	Remember that in JavaScript [almost everything is an object](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics "MDN web docs — JavaScript object basics").
 
