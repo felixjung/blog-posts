@@ -239,6 +239,6 @@ And that is it. JavaScript does not have interfaces. However, that does not mean
 
 [^1]:	Remember that in JavaScript [almost everything is an object](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics "MDN web docs — JavaScript object basics").
 
-[^2]:	In his classic book Clean Architecture, Robert C. Martin deals with these ideas in Part V on Architecture.
+[^2]:	In his classic book, “Clean Architecture”, Robert C. Martin deals with these ideas in Part V on Architecture.
 
 [^3]:	Tip of the hat to Mat Ryer’s for the [pattern of creating route handler closures on the server](https://pace.dev/blog/2018/05/09/how-I-write-http-services-after-eight-years.html "Mat Ryer — How I write HTTP services after eight years.") struct.
