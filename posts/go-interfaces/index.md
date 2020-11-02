@@ -1,6 +1,6 @@
 # JS to Go: Interfaces
 
-> I have been working with Go in a service-oriented architecture over the past one and a half years. It has been a fun ride after years of working with and enjoying JavaScript. This post is part of a series on things I have learned and patterns I have picked up while learning a new language.
+> I have been working with Go in a service-oriented architecture over the past year and a half. It has been a fun ride after years of working with and enjoying JavaScript. This post is part of a series in which I attempt to make my learnings accessible to other engineers with a JavaScript background. Huge thanks go to my dear colleague [Tom Arrell](https://tomarrell.com "Tom's website") who has taught me most of the things I now know about Go.
 
 In object-oriented programming languages, interfaces are abstract types 
 allowing developers to define a set of behaviors that a concrete type, such as a struct or class type, needs to exhibit to be used in a given context.
@@ -241,4 +241,4 @@ And that is it. JavaScript does not have interfaces. However, that does not mean
 
 [^2]:	In his classic book, “Clean Architecture”, Robert C. Martin deals with these ideas in Part V on Architecture.
 
-[^3]:	Tip of the hat to Mat Ryer’s for the [pattern of creating route handler closures on the server](https://pace.dev/blog/2018/05/09/how-I-write-http-services-after-eight-years.html "Mat Ryer — How I write HTTP services after eight years.") struct.
+[^3]:	Tip of the hat to Mat Ryer for the [pattern of creating route handler closures on the server](https://pace.dev/blog/2018/05/09/how-I-write-http-services-after-eight-years.html "Mat Ryer — How I write HTTP services after eight years.") struct.
