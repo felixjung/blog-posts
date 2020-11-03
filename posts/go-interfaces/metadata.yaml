@@ -3,7 +3,7 @@ publishDate: 2020-11-02
 isPublished: true
 summary: >
   Unlike JavaScript, Go has interfaces. Interfaces are a huge help in building
-  maintainable software. In this post I share what I learned about leverating Go
+  maintainable software. In this post I share what I learned about leveraging Go
   interfaces effectively in the past one and a half years of using the language
   in a service-oriented architecture.
 category: Backend
