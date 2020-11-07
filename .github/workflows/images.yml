@@ -1,4 +1,4 @@
-name: Publish Images S3
+name: Images
 
 on:
   push:
