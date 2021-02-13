@@ -1,0 +1,15 @@
+---
+publishDate: 2020-02-13
+isPublished: false
+summary: >
+  Tests are important for many reasons. Knowing your software behaves as
+  expected, safely making changes in an unfamiliar codebase, or documenting the
+  behavior of business logic are just a few reasons to write tests. In contrast
+  to JavaScript, Go ships with great testing capabilities as part of the
+  standard library. In this post we learn the basics of how to leverage them.
+category: Backend
+tags:
+  - Go
+  - Testing
+  - TDD
+  - JavaScript
