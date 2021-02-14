@@ -4,7 +4,9 @@
 
 Tests are one of the most important things when shipping software users depend on. When making fast incremental changes in a large project, tests and good test coverage allow us to trust we did not break anything. This is especially true when working in an unfamiliar codebase where tests also help us understand how a certain part of the code works.
 
-TypeScript and Go each have a static type system which protects us from passing incompatible parameters to functions or accessing object properties in an unsafe way. Having that extra safety compared to JavaScript is great, but we will still want to cover our application or library code in tests. In this blog post we will explore how to do that in Go and we will look at some patterns for different test scenarios and contexts. I assume you test your JavaScript code with [Jest](https://jestjs.io "Jest Testing Framework Website").
+TypeScript and Go each have a static type system which protects us from passing incompatible parameters to functions or accessing object properties in an unsafe way. Having that extra safety compared to JavaScript is great, but we will still want to cover our application or library code in tests. In this blog post we will explore how to do that in Go, and we will look at some patterns for different test scenarios and contexts.
+
+I assume you test your JavaScript code with [Jest](https://jestjs.io "Jest Testing Framework Website"). All examples from this post are [available on GitHub](https://github.com/felixjung/blog-posts/tree/main/posts/go-tests/example-code "Go to the GitHub repository containing the example code").
 
 ## Writing a Basic Function Test
 
@@ -16,7 +18,7 @@ function sum(a, b) {
 }
 ```
 
-In our test we set up the two inputs `a` and `b`, write down the expected return value value (`want`) and run our assertion using Jest’s `expect` [function](https://jestjs.io/docs/en/expect "Jest documentation for the expect function") and the `toBe` [matcher](https://jestjs.io/docs/en/using-matchers "Jest documentation for common matchers"). The test file, `sum.spec.js`, is colocated with the module, `sum.js`.
+In our test we set up the two inputs `a` and `b`, write down the expected return value (`want`) and run our assertion using Jest’s `expect` [function](https://jestjs.io/docs/en/expect "Jest documentation for the expect function") and the `toBe` [matcher](https://jestjs.io/docs/en/using-matchers "Jest documentation for common matchers"). The test file, `sum.spec.js`, is colocated with the module, `sum.js`.
 
 ```js
 import { sum } from './sum';
@@ -64,21 +66,22 @@ func TestSum(t *testing.T) {
 }
 ```
 
-Our testing approach is the same as in the JavaScript example. So let us look at the differences in [how tests work in go](https://golang.org/pkg/testing/ "Go documentation on testing"). The biggest difference is that Go has out of the box-support for testing. You do not need a testing framework like Jest.
+Our testing approach is the same as in the JavaScript example. So let us look at the differences in [how tests work in go](https://golang.org/pkg/testing/ "Go documentation on testing"). The most significant difference is that Go has out of the box-support for testing. You do not need a testing framework like Jest.
 
-> Testing frameworks for Go do exist. If you look for them you will most likely stumble upon [Ginkgo](https://onsi.github.io/ginkgo/ "Ginkgo testing framework website") or [GoConvey](http://goconvey.co "GoConvey testing framework website"). Both these examples aim at providing a Behavior Driven Development (BDD) testing experience. They  provide abstractions for writing tests and test runners with features like watch mode.
-> I would recommend _against_ using such testing frameworks. As with other aspects of writing Go I feel that sticking close to the language and its tooling keeps things simple. If you want to write BDD style tests, there are ways of doing that with Go’s testing support.
+> Testing frameworks for Go do exist. If you look for them, you will most likely stumble upon [Ginkgo](https://onsi.github.io/ginkgo/ "Ginkgo testing framework website") or [GoConvey](http://goconvey.co "GoConvey testing framework website"). Both these examples aim at providing a Behavior-Driven Development (BDD) testing experience. They provide abstractions for writing tests and test runners with features like watch mode.
+> 
+> I would recommend _against_ using such testing frameworks. As with other aspects of writing Go, I feel that sticking close to the language and its tooling keeps things simple. If you want to write BDD style tests, there are ways of doing that with Go’s testing support as explained later in this post.
 
 Tests are run with the `go test` command and package `testing` provides all the basics you need to test your code. Additionally, the example demonstrates the following.
 
-* Tests live in a file with the `_test` suffix in the filename. When you run `go test` the test tool will look for files with that suffix.
-* Every test is defined with a function using the `Test` prefix in the function name, i.e. `TestSum`. It is important that the first letter after `Test` is capitalized. Functions located in a test file and using this name pattern are identified as test routine.
-* A test routine is called with a pointer to an instance of [the `T` struct from the `testing` package](https://pkg.go.dev/testing#T "Documentation for the T type of package testing") (i.e. `*testing.T`). `T` manages the test state and provides functions for failing a test or writing logs.
-* Assertions can be written with plain Go. You make your assertion in a simple `if` statement. You fail the test by calling `t.Fail`, `t.FailNow`, `t.Fatal`, `t.Fatalf`, or other methods on the `T` struct. This becomes a bit tedious for more complicated assertions and will look at assertion libraries in the next section.
+* Tests live in a file with the `_test` suffix in the filename. When you run `go test`, the test tool will look for files with that suffix.
+* Every test is defined with [a function using the `Test` prefix](https://pkg.go.dev/testing#pkg-overview "Open the Go documentation for package "testing"") in the function name, i.e. `TestSum`. It is important that the first letter after `Test` is capitalized. Functions located in a test file and using this name pattern are identified as test routine.
+* Test routines are called with a pointer to an instance of [the `T` struct from the `testing` package](https://pkg.go.dev/testing#T "Documentation for the T type of package testing") (i.e. `*testing.T`). `T` manages the test state and provides functions for failing a test or writing logs.
+* Assertions can be written with plain Go. You make your assertion in a simple `if` statement. You fail the test by calling `t.Fail`, `t.FailNow`, `t.Fatal`, `t.Fatalf`, or other methods on the `T` struct. This becomes a bit tedious for more complicated assertions, so will look at assertion libraries in the next section.
 
 ## Powerful Assertions With Testify
 
-Making assertions with `if` statements can get a bit harder to read and may become quite involved when you start handling more complicated assertions. For example, you may want to test whether a slice contains a certain value or that an HTTP handler returns a certain status code. [Testify](https://github.com/stretchr/testify "Testify GitHub repository") is a very popular library for mocking and assertions. It is designed to work well with the standard library. I would recommend to use the official [GoMock framework](https://github.com/golang/mock "GoMock GitHub repository") over using Testify’s mocking feature.
+Making assertions with `if` statements can get a bit harder to read and may become quite involved when you start handling more complicated assertions. For example, you may want to test whether a slice contains a certain value or that an HTTP handler returns a certain status code. [Testify](https://github.com/stretchr/testify "Testify GitHub repository") is a very popular library for mocking and assertions. It is designed to work well with the standard library.[^2]
 
 Let us rewrite the assertion in `TestSum` with Testify.
 
@@ -103,9 +106,9 @@ func TestSumWithTestify(t *testing.T) {
 }
 ```
 
-Here we are using Testify’s `require` package and the `Equal` matcher. Testify also has an `assert` package with the same API. However, the matchers in `require` will fail your test immediately while `assert`’s matchers will allow your test to continue. I prefer my tests to fail immediately because I find easier to identify the problem causing my test to fail. The first argument to a matcher is the `testing.T` pointer. Matchers comparing an expected and an actual value take the expected value as second parameter and the actual value as third parameter. This is important because you can get easily confused by a failing test’s output when you flipped the two.
+Here we are using Testify’s `require` package and the `Equal` assertion. Testify also has an `assert` package with the same API. However, the assertions in `require` will fail your test immediately, while `assert`’s assertions will allow your test to continue. I prefer my tests to fail immediately because I find it easier to identify the underlying problem. The first argument to an assertion is the `testing.T` pointer. Assertions comparing an expected and an actual value take the expected value as second parameter and the actual value as third parameter. This is important because you can easily get confused by a failing test’s output when you flipped the two.
 
-If you have a test with several assertions, you can create an instance of the `require` package `Assertions` and use that directly.
+If you have a test with several assertions, you can create an instance of the `require` package `Assertions` and use that directly. The same is true for the `assert` package.
 
 ```go
 package math
@@ -130,13 +133,13 @@ func TestSumWithAssertionsInstance(t *testing.T) {
 }
 ```
 
-Some linter rules may complain about shadowing the `require` package inside of your test function. Do not bother with those violations, this is common practice.
+Some linter rules may complain about shadowing the `require` package inside your test function. Do not bother with those violations, as this is common practice.
 
-## Behavior Driven Development With Subtests
+## Behavior-Driven Development With Subtests
 
-Earlier in this post I mentioned how some Go testing frameworks are made for [Behavior Driven Development (BDD)](https://en.wikipedia.org/wiki/Behavior-driven_development "BDD on Wikipedia"). In BDD you develop your software and tests against human-readable requirements. These requirements can for example be written by product managers using a product domain’s [ubiquitous language](https://martinfowler.com/bliki/UbiquitousLanguage.html "Martin Fowler definition of Ubiquitous Language"). 
+Earlier in this post I mentioned how some Go testing frameworks are made for [Behavior-Driven Development (BDD)](https://en.wikipedia.org/wiki/Behavior-driven_development "BDD on Wikipedia"). In BDD you develop your software and tests against human-readable requirements. These requirements can, for example, be written by product managers using a product domain’s [ubiquitous language](https://martinfowler.com/bliki/UbiquitousLanguage.html "Martin Fowler definition of Ubiquitous Language"). 
 
-To make the example a bit more interesting, let us consider a `sumOrMax` function, which returns the sum of parameters `a` and `b` as long as it stays below a `max` value, which is provided as a third parameter.
+To make the example a bit more interesting, let us consider a `sumOrMax` function. `sumOrmax` returns the sum of parameters `a` and `b` as long as it stays below a `max` value provided as a third parameter. If the sum is larger than `max`, `sumOrMax` returns `max`.
 
 ```js
 export function sumOrMax(a, b, max) {
@@ -182,7 +185,7 @@ describe('sumOrMax', () => {
 });
 ```
 
-In Go we can achieve something equivalent with subtests. The Go version of `sumOrMax` looks as follows.
+In Go, we can achieve something equivalent with subtests. The Go version of `sumOrMax` looks as follows.
 
 ```go
 package math
@@ -198,7 +201,7 @@ func SumOrMax(a, b, max int) int {
 }
 ```
 
-To write our BDD-style test, we take advantage of the `Run` method exposed by the `T` struct. It allows us to spawn a new test, a subtest. The behavior is similar to how `it` behaves in Jest.
+To write our BDD-style test, we take advantage of the [`Run` method exposed by the `T`](https://pkg.go.dev/testing#T.Run "View the Go documentation for the T.Run method") struct. It allows us to spawn a new test, a subtest. The behavior is similar to that of `it` in Jest.
 
 ```go
 package math
@@ -238,11 +241,11 @@ func TestSumOrMax(t *testing.T) {
 
 For every `describe` block in the JavaScript test suite, we introduce a call to `t.Run`. For the description of the `it` blocks we pass a description of the expected behavior to the assertion call. Most of Testify’s assertions support that extra `msgAndArgs` parameter.
 
-## Testing Many Scenarios With Table Driven Tests
+## Testing Many Scenarios With Table-Driven Tests
 
-Especially in unit tests we want to test a given function for many different inputs. In such cases table driven tests are an efficient approach to test all scenarios in a single test.
+Especially in unit tests we may want to test a given function for many different inputs. In such cases, table-driven tests are an efficient approach allowing us to test many scenarios without duplicating test logic.
 
-Let us try table driven tests with a `fib` function, which returns the nth number in the [Fibonacci series](https://en.wikipedia.org/wiki/Fibonacci_number "Wikipedia page for the Fibonacci number").[^2] Our JavaScript implementation looks as follows.
+Let us try table-driven tests with a `fib` function, which returns the nth number in the [Fibonacci series](https://en.wikipedia.org/wiki/Fibonacci_number "Wikipedia page for the Fibonacci number").[^3] Our JavaScript implementation looks as follows.
 
 ```js
 export function fib(n) {
@@ -254,7 +257,7 @@ export function fib(n) {
 }
 ```
 
-In [Jest we implement a table driven](https://jestjs.io/docs/en/api#testeachtablename-fn-timeout "Jest documentation on table driven tests") test as follows.
+In [Jest, we implement a table-driven](https://jestjs.io/docs/en/api#testeachtablename-fn-timeout "Jest documentation on table driven tests") test as follows.
 
 ```js
 import { fib } from './fib';
@@ -280,11 +283,11 @@ describe('fib', () => {
 
 In case you are not familiar with how table tests in Jest work, I will walk you through it.
 
-1. In our call to `each()` we pass the _test table_. This is a nested array where every element is a test case. The test case consists of function parameters and the expected value. You may order these as you like as the values are just forwarded in order.
+1. In our call to `each()` we pass the _test table_. This is a nested array where every element is a test case. Each test case consists of function parameters and the expected value. You may order these as you like as the values are just forwarded in order.
 2. In the chained call to the return value of `each()` we pass a description of the test and a function to run the test. The description is a template string, where the test case values can be rendered using `printf` format. The test function receives the values of our test case as arguments.
 3. In our test function we run assertions just like we would in a normal `it()` test.
 
-Every test case will be run by Jest and we get a nice report of the successes and failures.
+Jest will run every test case and show a nice report of the successes and failures.
 
 The Go implementation, `Fib` looks as follows.
 
@@ -300,7 +303,7 @@ func Fib(n int) int {
 }
 ```
 
-To create the same table driven test as we did for the JavaScript version we will use `t.Run`, just like we did in our subtests.
+To create the same table-driven test as we did for the JavaScript version we will use `t.Run`, just like we did in our subtests.
 
 ```go
 package math
@@ -344,18 +347,20 @@ There is no test framework magic involved here.
 
 1. We create a table for our test cases, `tc`, as a slice using an inline struct type for the values.
 2. We iterate over the test cases in a [`for` loop using the range expression](https://gobyexample.com/range "Go by Example documentation page for range").
-3. We create a name for the subtest and run the test using testify for assertions.
+3. Finally, we create a name for the subtest and run the test using testify for assertions.
 
-And that is it. You have successfully tested your code.
+And that is it, we have successfully tested `Fib` for many inputs.
 
 ## Conclusion
 
 In this post we have learned how to write tests for simple Go functions. These functions were simple in the sense that they were pure: the same inputs lead to the same output with no other side effects.
 
-Testing a function is straight forward with Go’s standard library — you just write Go, no frameworks needed. Libraries like testify help a lot by reducing the effort you have to put into your assertions. Subtests allow you to structure your test cases in a BDD style manner. Finally, table driven tests make it easy to handle a lot of test cases with very little code.
+Testing a function is straightforward with Go’s standard library — you just write Go, no frameworks needed. Libraries like Testify help a lot by reducing the effort you have to put into your assertions. Subtests allow you to structure your test cases in a BDD style manner. Finally, table-driven tests make it easy to handle many test cases with very little code.
 
-Things will get a bit more difficult when you need to deal with dependencies, such as databases. For example, if your function queries a database you will not necessarily want to have that database running for a unit test. In a future post we will look at how interfaces and mocks can help us with this problem.
+Things will get a bit more difficult when you need to deal with dependencies, such as databases. For example, if your function queries a database, you will not necessarily want to have that database running for a unit test. In a future post we will look at how interfaces and mocks can help us with this problem.
 
 [^1]:	Incidentally, this is the same example the Jest folks [use on their website](https://jestjs.io/docs/en/getting-started "Go to the Jest Getting Started guide"). 🤷‍♂️
 
-[^2]:	This example is shamelessly taken from [Dave Cheney’s very helpful and always interesting blog](https://dave.cheney.net/2013/06/09/writing-table-driven-tests-in-go "Dave Cheney — Writing table driven tests in Go").
+[^2]:	I would recommend using the official [GoMock framework](https://github.com/golang/mock "GoMock GitHub repository") over using Testify’s mocking feature.
+
+[^3]:	This example is shamelessly taken from [Dave Cheney’s very helpful and always interesting blog](https://dave.cheney.net/2013/06/09/writing-table-driven-tests-in-go "Dave Cheney — Writing table driven tests in Go").
